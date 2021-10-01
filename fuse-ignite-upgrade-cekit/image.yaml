@@ -1,0 +1,58 @@
+schema_version: 1
+
+name: "fuse7/fuse-online-meta-rhel8"
+description: "Manages metadata and validation for Fuse Online connectors."
+version: "1.9"
+from: "registry-proxy.engineering.redhat.com/rh-osbs/ubi8-openjdk-8"
+
+labels:
+- name: "com.redhat.component"
+  value: "fuse-ignite-upgrade-rhel-8-container"
+- name: "maintainer"
+  value: "Otavio Piske <opiske@redhat.com>"   
+- name: "io.k8s.description"
+  value: "Controller that manages updates and upgrade process for Fuse Online components"
+- name: "io.k8s.display-name"
+  value: "Red Hat Fuse Online - Upgrade"
+- name: "io.openshift.tags"
+  value: "fuse,online" 
+
+modules:
+    repositories:
+      - name: modules
+        path: modules
+    install:
+      - name: environ
+      - name: install-pkg
+      - name: license
+
+artifacts:
+- name: "upgrade.sh"
+  path: "upgrade.sh"
+  dest: "/opt" 
+- name: "common.sh"
+  path: "common.sh"
+  dest: "/opt"
+- name: "entrypoint.sh"
+  path: "entrypoint.sh"
+  dest: "/opt"   
+- name: "syndesis-cli"
+  sha512: "c0cdd11b18498f0d8c2eb5c8f48b6779e03e212247533f9ab515969a1a18e43026531d676a09858e17fda5e0bef5129e5b4e8c984f13d4653ee5b83798603307"
+  url: "http://indy.psi.redhat.com/api/content/maven/group/redhat-builds/io/syndesis/server/syndesis-cli/1.12.0.fuse-790010-redhat-00001/syndesis-cli-1.12.0.fuse-790010-redhat-00001.jar"
+  dest: "/opt"
+  target: "syndesis-cli.jar"
+- name: "steps"
+  path: "steps"
+  dest: "/opt/steps"  
+- name: "migration"
+  path: "migration"
+  dest: "/opt/migration/"
+
+
+run:
+  workdir: /opt
+  entrypoint:
+  - "/bin/bash"
+  - "/opt/upgrade.sh"
+  - "--migration"
+  - "/opt/migration"

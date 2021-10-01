@@ -1,0 +1,8 @@
+schema_version: 1
+
+name: dev-urandom
+version: 1.0
+description: "Use /dev/urandom to speed up startups."
+
+execute: 
+- script: install.sh

@@ -1,0 +1,56 @@
+schema_version: 1
+
+name: "fuse7/fuse-online-rhel8-operator-metadata"
+description: "Operator which manages the lifecycle of the Fuse Online application."
+version: "1.9"
+from: "scratch"
+
+labels:
+- name: "operators.operatorframework.io.bundle.mediatype.v1"
+  value: registry+v1
+- name: "operators.operatorframework.io.bundle.manifests.v1"
+  value: manifests/
+- name: "operators.operatorframework.io.bundle.metadata.v1"
+  value: metadata/
+- name: "operators.operatorframework.io.bundle.package.v1"
+  value: fuse-online
+- name: "operators.operatorframework.io.bundle.channels.v1"
+  value: "7.9.x"
+- name: "operators.operatorframework.io.bundle.channel.default.v1"
+  value: "7.9.x"  
+- name: "operators.operatorframework.io.metrics.mediatype.v1"
+  value: "metrics+v1"
+- name: "operators.operatorframework.io.metrics.builder"
+  value: "operator-sdk-v1.5.0"
+- name: "operators.operatorframework.io.metrics.project_layout"
+  value: "go.kubebuilder.io/v2"
+- name: "com.redhat.delivery.operator.bundle"
+  value: "true"
+- name: "com.redhat.openshift.versions"
+  value: "v4.6"
+- name: "operators.operatorframework.io.test.mediatype.v1"
+  value: "scorecard+v1"
+- name: "operators.operatorframework.io.test.config.v1"
+  value: "tests/scorecard/"
+- name: "maintainer"
+  value: "Otavio Piske <opiske@redhat.com>"
+- name: "com.redhat.component"
+  value: "fuse-online-rhel-8-operator-metadata-container"
+- name: "io.k8s.description"
+  value: "Operator which manages the lifecycle of the Fuse Online application."
+- name: "io.k8s.display-name"  
+  value: "Red Hat Fuse Online Operator"
+- name: "io.openshift.tags"  
+  value: "fuse"
+
+
+artifacts:
+    - name: "manifests"
+      path: manifests
+      dest: /manifests
+    - name: "metadata"
+      path: metadata
+      dest: /metadata  
+    - name: "scorecard"
+      path: tests/scorecard
+      dest: /tests/scorecard/

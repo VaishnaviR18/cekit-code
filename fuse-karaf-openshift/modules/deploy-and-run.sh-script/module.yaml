@@ -1,0 +1,13 @@
+schema_version: 1
+
+name: deploy-and-run.sh-script
+version: 1.0
+description: "Copy deploy-and-run.sh for standalone images. Necessary to permit running with a randomised UID"
+
+artifacts: 
+- name: deploy-and-run.sh
+- path: deploy-and-run.sh
+- dest: /deployments/
+
+execute:
+- script: chmod.sh

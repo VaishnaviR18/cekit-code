@@ -1,0 +1,40 @@
+schema_version: 1
+
+name: "fuse7-tech-preview/fuse-service-registry-rhel7"
+description: "An artifact registry for Schemas and API designs."
+version: "1.6"
+from: "registry-proxy.engineering.redhat.com/rh-osbs/fuse7-fuse-java-openshift:1.6"
+
+labels:
+- name: "com.redhat.component"
+  value: "fuse-service-registry-rhel7-container"
+- name: "maintainer"
+  value: "Eric Wittmann <ewittman@redhat.com>"   
+- name: "io.k8s.description"
+  value: "An artifact registry for Schemas and API designs."
+- name: "io.k8s.display-name"
+  value: "Red Hat Integration Schema/API Registry"
+- name: "io.openshift.tags"
+  value: "fuse"
+
+envs:
+- name: JAVA_APP_DIR
+  value: /deployments
+- name: SYNDESIS_VERSION
+  value: 1.1.0.fuse-760003-temporary-redhat-00001
+
+ports:
+    - value: 8080
+    - value: 8778
+    - value: 9779
+      expose: true   
+
+artifacts:
+- name: apicurio-registry-storage-kafka
+  md5: 7e5bb77990d6d081817aafb40b7afd0b
+  url: http://indy.psi.redhat.com/api/content/maven/group/redhat-builds/io/apicurio/apicurio-registry-storage-kafka/1.1.0.fuse-760003-temporary-redhat-00001/apicurio-registry-storage-kafka-1.1.0.fuse-760003-temporary-redhat-00001-all.tar.gz
+  target: apicurio-registry-storage-kafka-1.1.0.fuse-760003-temporary-redhat-00001-all.tar.gz
+  dest: /deployments/
+
+run:
+  user: 185

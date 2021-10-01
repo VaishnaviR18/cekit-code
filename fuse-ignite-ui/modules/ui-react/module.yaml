@@ -1,0 +1,15 @@
+schema_version: 1
+
+name: ui-react
+version: 1.0
+description: "copy ui-recact-artifact"
+
+artifacts:
+- name: "ui-react"
+  sha512: "12c7f42d43eafe988fa7db2ac11f24a7b31b1aa9b9da44b78f0baf625b62bd04bc4a931c988207845600b1d68e2f6ca8fea4151b53c843cf17cee4eaa86dafb0"
+  url: "http://indy.psi.redhat.com/api/content/maven/group/redhat-builds/io/syndesis/ui/ui-react/1.12.0.fuse-790010-redhat-00001/ui-react-1.12.0.fuse-790010-redhat-00001-dist.tar.gz"
+  target: "ui-react-1.12.0.fuse-790010-redhat-00001-dist.tar.gz"
+  dest: "/tmp/src/"
+
+execute:
+- script: install.sh

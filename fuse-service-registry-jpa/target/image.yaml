@@ -1,0 +1,57 @@
+artifacts:
+- dest: /deployments/
+  md5: 7acd35fb627b0e9f8a4154f0669627d2
+  name: apicurio-registry-storage-jpa
+  target: apicurio-registry-storage-jpa-1.1.2.fuse-760006-redhat-00001-all.tar.gz
+  url: http://indy.psi.redhat.com/api/content/maven/group/redhat-builds/io/apicurio/apicurio-registry-storage-jpa/1.1.2.fuse-760006-redhat-00001/apicurio-registry-storage-jpa-1.1.2.fuse-760006-redhat-00001-all.tar.gz
+description: An artifact registry for Schemas and API designs.
+envs:
+- name: JAVA_APP_DIR
+  value: /deployments
+- name: APICURIO_VERSION
+  value: 1.1.2.fuse-760006-redhat-00001
+from: registry-proxy.engineering.redhat.com/rh-osbs/fuse7-fuse-java-openshift:1.6
+labels:
+- name: com.redhat.component
+  value: fuse-service-registry-jpa-container
+- name: maintainer
+  value: Eric Wittmann <ewittman@redhat.com>
+- name: io.k8s.description
+  value: An artifact registry for Schemas and API designs.
+- name: io.k8s.display-name
+  value: Red Hat Integration Schema/API Registry
+- name: io.openshift.tags
+  value: fuse
+- name: io.cekit.version
+  value: 3.11.0
+- name: description
+  value: An artifact registry for Schemas and API designs.
+- name: summary
+  value: An artifact registry for Schemas and API designs.
+modules:
+  install: []
+  repositories: []
+name: fuse7-tech-preview/fuse-service-registry-jpa
+osbs:
+  configuration: {}
+  extra_dir: osbs_extra
+  repository: {}
+packages:
+  install: []
+  manager: yum
+  repositories: []
+  repositories_injected: []
+ports:
+- name: 8080
+  value: 8080
+- name: 8778
+  value: 8778
+- expose: true
+  name: 9779
+  value: 9779
+run:
+  name: run
+  user: 185
+schema_version: 1
+version: '1.6'
+volumes: []

@@ -1,0 +1,66 @@
+schema_version: 1
+
+name: "fuse7/fuse-karaf-openshift-rhel8"
+description: "Platform for building and running Apache Karaf OSGi applications"
+version: "1.9"
+from: "registry-proxy.engineering.redhat.com/rh-osbs/ubi8/openjdk-8"
+
+labels:
+- name: "com.redhat.component"
+  value: "fuse-karaf-openshift-rhel-8-container"
+- name: "maintainer"
+  value: "Otavio Piske <opiske@redhat.com>"   
+- name: "io.fabric8.s2i.version.maven"
+  value: "3.3.3-1.el7"
+- name: "io.fabric8.s2i.version.jolokia"
+  value: "$JOLOKIA_VERSION"
+- name: "io.fabric8.s2i.version.karaf"
+  value: "$KARAF_FRAMEWORK_VERSION"
+- name: "io.fabric8.s2i.version.prometheus.jmx_exporter"
+  value: "$PROMETHEUS_JMX_EXPORTER_VERSION"
+- name: "io.k8s.description"
+  value: "Platform for building and running Apache Karaf OSGi applications"
+- name: "io.k8s.display-name"
+  value: "Fuse for OpenShift - Karaf based"
+- name: "io.openshift.s2i.scripts-url"
+  value: "image:///usr/local/s2i"
+- name: "io.openshift.s2i.destination"
+  value: "/tmp"
+- name: "io.openshift.tags"
+  value: "builder,karaf"
+- name: "org.jboss.deployments-dir"
+  value: "/deployments/karaf"
+- name: "com.redhat.deployments-dir"
+  value: "/deployments/karaf"
+- name: "com.redhat.dev-mode"
+  value: "JAVA_DEBUG:false"
+- name: "com.redhat.dev-mode.port"
+  value: "JAVA_DEBUG_PORT:5005"
+
+ports:
+    - value: 8080
+    - value: 8778
+    - value: 9779
+      expose: true   
+
+modules:
+    repositories:
+      - name: modules
+        path: modules
+    install:
+      - name: environ
+      - name: dev-urandom
+      - name: user
+      - name: prometheus
+      - name: jolokia
+      - name: S2I-scripts+README
+      - name: license
+      - name: run-java.sh-script
+      - name: deploy-and-run.sh-script
+      - name: karaf-specific-env
+      - name: settings-xml
+
+run:
+  user: 185
+  cmd: 
+  - "usage"

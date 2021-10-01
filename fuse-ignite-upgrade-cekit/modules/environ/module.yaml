@@ -1,0 +1,17 @@
+schema_version: 1
+
+name: environ
+version: 1.0
+description: "Add envs"
+
+envs:
+  - name: KUBECONFIG
+    value: "/opt/kube-config"
+  - name: RELEASE
+    value: "1"
+  - name: SYNDESIS_VERSION
+    value: "1.5"
+  - name: COMMUNITY_VERSION
+    value: "1.12"
+  - name: SYNDESIS_CLI_VERSION
+    value: "1.12.0.fuse-790010-redhat-00001"

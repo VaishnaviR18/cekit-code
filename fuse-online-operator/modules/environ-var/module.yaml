@@ -1,0 +1,15 @@
+schema_version: 1
+
+name: environ-var
+version: 1.0
+description: "To set envs of final img"
+
+envs:
+- name: OPERATOR
+  value: /usr/local/bin/syndesis-operator
+- name: USER_UID
+  value: 1001
+- name: USER_NAME
+  value: operator
+- name: UPGRADE_VERSION
+  value: 1.9  

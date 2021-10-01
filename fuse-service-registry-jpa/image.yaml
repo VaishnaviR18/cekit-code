@@ -1,0 +1,39 @@
+schema_version: 1
+
+name: "fuse7-tech-preview/fuse-service-registry-jpa"
+description: "An artifact registry for Schemas and API designs."
+version: "1.6"
+from: "registry-proxy.engineering.redhat.com/rh-osbs/fuse7-fuse-java-openshift:1.6"
+labels:
+- name: "com.redhat.component"
+  value: "fuse-service-registry-jpa-container"
+- name: "maintainer"
+  value: "Eric Wittmann <ewittman@redhat.com>"   
+- name: "io.k8s.description"
+  value: "An artifact registry for Schemas and API designs."
+- name: "io.k8s.display-name"
+  value: "Red Hat Integration Schema/API Registry"
+- name: "io.openshift.tags"
+  value: "fuse"
+
+envs:
+  - name: JAVA_APP_DIR
+    value: /deployments
+  - name: APICURIO_VERSION
+    value: 1.1.2.fuse-760006-redhat-00001
+
+ports:
+    - value: 8080
+    - value: 8778
+    - value: 9779
+      expose: true   
+
+artifacts:
+- name: "apicurio-registry-storage-jpa"
+  md5: "7acd35fb627b0e9f8a4154f0669627d2"
+  url: "http://indy.psi.redhat.com/api/content/maven/group/redhat-builds/io/apicurio/apicurio-registry-storage-jpa/1.1.2.fuse-760006-redhat-00001/apicurio-registry-storage-jpa-1.1.2.fuse-760006-redhat-00001-all.tar.gz"
+  target: "apicurio-registry-storage-jpa-1.1.2.fuse-760006-redhat-00001-all.tar.gz"
+  dest: "/deployments/" 
+
+run:
+  user: 185

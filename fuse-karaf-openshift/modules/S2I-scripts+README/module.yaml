@@ -1,0 +1,14 @@
+schema_version: 1
+
+name: S2I-scripts+README
+version: 1.0
+description: "S2I scripts + README"
+
+artifacts: 
+- name: s2i
+- path: s2i
+- dest: /usr/local/
+
+execute:
+- script: configure.sh
+- script: backward_compatibility.sh

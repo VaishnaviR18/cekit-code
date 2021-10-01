@@ -1,0 +1,8 @@
+schema_version: 1
+
+name: user
+version: 1.0
+description: "Add jboss user to the root group"
+
+execute: 
+- script: user.sh

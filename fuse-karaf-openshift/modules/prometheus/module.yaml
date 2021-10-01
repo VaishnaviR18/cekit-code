@@ -1,0 +1,16 @@
+schema_version: 1
+
+name: prometheus
+version: 1.0
+description: "Prometheus JMX exporter agent"
+
+artifacts:
+- name: "artifacts/io/prometheus/jmx/jmx_prometheus_javaagent/0.3.1.redhat-00006/jmx_prometheus_javaagent-0.3.1.redhat-00006.jar"
+- url:
+- target: "jmx_prometheus_javaagent.jar"  
+- dest: "/opt/prometheus/"
+
+execute:
+- script: configure.sh
+- script: backward_compatibility.sh
+- script: chmod.sh

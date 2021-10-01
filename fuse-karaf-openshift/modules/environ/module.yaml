@@ -1,0 +1,23 @@
+schema_version: 1
+
+name: environ
+version: 1.0
+description: "To set envs"
+
+envs:
+- name: FUSE_KARAF_IMAGE_NAME
+  value: fuse7/fuse-karaf-openshift-rhel8
+- name: FUSE_KARAF_IMAGE_VERSION
+  value: "1.9"
+- name: JOLOKIA_VERSION
+  value: "1.6.2.redhat-00002"
+- name: KARAF_FRAMEWORK_VERSION
+  value: "4.2.9.fuse-790015-redhat-00001"
+- name: PROMETHEUS_JMX_EXPORTER_VERSION
+  value: "0.3.1.redhat-00006"
+- name: PATH
+  value: "/usr/local/s2i:$PATH"
+- name: AB_JOLOKIA_PASSWORD_RANDOM
+  value: "true"
+- name: AB_JOLOKIA_AUTH_OPENSHIFT
+  value: "true"        

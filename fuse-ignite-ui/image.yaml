@@ -1,0 +1,46 @@
+schema_version: 1
+
+name: "fuse7/fuse-online-ui-rhel8"
+description: "User interface component for Fuse Online."
+version: "1.9"
+from: "registry-proxy.engineering.redhat.com/rh-osbs/rhel8/nginx-114:1"
+labels:
+- name: "com.redhat.component"
+  value: "fuse-ignite-ui-rhel-8-container"
+- name: "maintainer"
+  value: "Otavio Piske <opiske@redhat.com>"   
+- name: "io.k8s.description"
+  value: "User interface component for Fuse Online."
+- name: "io.k8s.display-name"
+  value: "Red Hat Fuse Online - UI"
+- name: "io.openshift.tags"
+  value: "fuse,online,online-ui"
+
+ports:
+    - value: 8080
+    - value: 8443
+      expose: true   
+
+modules:
+    repositories:
+      - name: modules
+        path: modules
+    install:
+      - name: environ
+      - name: license
+      - name: ui-react
+
+artifacts:
+- name: "nginx-syndesis.conf"
+  path: "nginx-syndesis.conf"
+  dest: "/tmp/src/nginx-default-cfg/" 
+
+execute:
+- script: install.sh
+
+run:
+  user: default
+  cmd:
+  - "/bin/sh"
+  - "-c"
+  - "$STI_SCRIPTS_PATH/run"

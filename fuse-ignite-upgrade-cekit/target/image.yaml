@@ -1,0 +1,79 @@
+artifacts:
+- dest: /opt/
+  name: upgrade.sh
+  path: /home/var/fuse-ignite-upgrade-cekit/upgrade.sh
+  target: upgrade.sh
+- dest: /opt/
+  name: common.sh
+  path: /home/var/fuse-ignite-upgrade-cekit/common.sh
+  target: common.sh
+- dest: /opt/
+  name: entrypoint.sh
+  path: /home/var/fuse-ignite-upgrade-cekit/entrypoint.sh
+  target: entrypoint.sh
+- dest: /opt/
+  name: syndesis-cli
+  sha512: c0cdd11b18498f0d8c2eb5c8f48b6779e03e212247533f9ab515969a1a18e43026531d676a09858e17fda5e0bef5129e5b4e8c984f13d4653ee5b83798603307
+  target: syndesis-cli.jar
+  url: http://indy.psi.redhat.com/api/content/maven/group/redhat-builds/io/syndesis/server/syndesis-cli/1.12.0.fuse-790010-redhat-00001/syndesis-cli-1.12.0.fuse-790010-redhat-00001.jar
+- dest: /opt/steps/
+  name: steps
+  path: /home/var/fuse-ignite-upgrade-cekit/steps
+  target: steps
+- dest: /opt/migration/
+  name: migration
+  path: /home/var/fuse-ignite-upgrade-cekit/migration
+  target: migration
+description: Manages metadata and validation for Fuse Online connectors.
+envs: []
+from: registry-proxy.engineering.redhat.com/rh-osbs/ubi8-openjdk-8
+labels:
+- name: com.redhat.component
+  value: fuse-ignite-upgrade-rhel-8-container
+- name: maintainer
+  value: Otavio Piske <opiske@redhat.com>
+- name: io.k8s.description
+  value: Controller that manages updates and upgrade process for Fuse Online components
+- name: io.k8s.display-name
+  value: Red Hat Fuse Online - Upgrade
+- name: io.openshift.tags
+  value: fuse,online
+- name: io.cekit.version
+  value: 3.11.0
+- name: description
+  value: Manages metadata and validation for Fuse Online connectors.
+- name: summary
+  value: Manages metadata and validation for Fuse Online connectors.
+modules:
+  install:
+  - name: environ
+  - name: install-pkg
+  - name: license
+  repositories:
+  - dest: /tmp/artifacts/
+    name: modules
+    path: /home/var/fuse-ignite-upgrade-cekit/modules
+    target: modules
+name: fuse7/fuse-online-meta-rhel8
+osbs:
+  configuration: {}
+  extra_dir: osbs_extra
+  repository: {}
+packages:
+  install: []
+  manager: yum
+  repositories: []
+  repositories_injected: []
+ports: []
+run:
+  entrypoint:
+  - /bin/bash
+  - /opt/upgrade.sh
+  - --migration
+  - /opt/migration
+  name: run
+  user: root
+  workdir: /opt
+schema_version: 1
+version: '1.9'
+volumes: []

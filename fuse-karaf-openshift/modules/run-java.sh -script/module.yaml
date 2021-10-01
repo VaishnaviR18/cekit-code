@@ -1,0 +1,13 @@
+schema_version: 1
+
+name: run-java.sh-script
+version: 1.0
+description: "Add run script as /opt/run-java/run-java.sh and make it executable"
+
+artifacts: 
+- name: run-java.sh
+- path: run-java.sh
+- dest: /opt/run-java/
+
+execute:
+- script: chmod.sh

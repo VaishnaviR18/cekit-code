@@ -1,0 +1,22 @@
+artifacts: []
+envs: []
+execute:
+- directory: install-pkg
+  module_name: install-pkg
+  name: install-pkg/install.sh
+  script: install.sh
+labels: []
+modules:
+  install: []
+  repositories: []
+name: install-pkg
+osbs:
+  configuration: {}
+  repository: {}
+packages:
+  install: []
+  repositories: []
+ports: []
+schema_version: 1
+version: 1.0
+volumes: []

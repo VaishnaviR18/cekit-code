@@ -1,0 +1,77 @@
+- name: "builder"
+  from: "registry-proxy.engineering.redhat.com/rh-osbs/rhel8/go-toolset"
+  version: ""
+
+  modules:
+    repositories:
+      - name: modules
+        path: modules
+    install:
+      - name: environ
+      - name: build
+
+  run:
+    workdir: $REMOTE_SOURCE_DIR/app/install/operator    
+
+#final image
+
+- name: &name "fuse7/fuse-online-rhel8-operator"
+  from: "registry-proxy.engineering.redhat.com/rh-osbs/ubi8/ubi-minimal"
+  version: &version "1.9"
+  description: "Operator which manages the lifecycle of the Fuse Online application."
+
+  labels:
+  - name: "com.redhat.component"
+    value: "fuse-online-rhel-8-operator-container"
+  - name: "maintainer"
+    value: "Otavio Piske <opiske@redhat.com>"   
+  - name: io.k8s.description
+    value: "Operator which manages the lifecycle of the Fuse Online application."    
+  - name: "io.k8s.display-name"
+    value: "Red Hat Fuse Online Operator"
+  - name: "io.openshift.tags"
+    value: "fuse"
+
+  artifacts:
+  - image: builder
+    path: $REMOTE_SOURCE_DIR/app/install/operator/dist/linux-amd64/syndesis-operator
+    dest: ${OPERATOR}
+
+  - image: builder
+    path: $REMOTE_SOURCE_DIR/app/install/operator/build/bin
+    dest: /usr/local/bin
+
+  - image: builder
+    path: $REMOTE_SOURCE_DIR/app/install/operator/dist/darwin-amd64
+    dest: /opt/clients/darwin-amd64
+
+  - image: builder
+    path: $REMOTE_SOURCE_DIR/app/install/operator/dist/windows-amd64
+    dest: /opt/clients/windows-amd64
+
+  - name: conf
+    path: build/conf  
+    dest: /conf
+  
+  modules:
+    repositories:
+      - name: modules
+        path: modules
+    install:
+      - name: environ-var
+
+  execute: 
+  - script: install.sh
+
+  run: 
+    user: ${USER_UID}
+    entrypoint: 
+      - "/usr/local/bin/entrypoint"
+      - "run"    
+
+#osbs:
+ # configuration:
+  #  container_file: container.yaml
+   #   repository:
+    #        name: containers/fuse-online-operator
+     #       branch: private-devel-fuse-7.9-openshift-rhel-8

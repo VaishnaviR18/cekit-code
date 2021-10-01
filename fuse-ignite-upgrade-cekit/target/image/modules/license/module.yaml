@@ -1,0 +1,27 @@
+artifacts: []
+description: Add & Generate licenses directory
+envs: []
+execute:
+- directory: license
+  module_name: license
+  name: license/configure.sh
+  script: configure.sh
+- directory: license
+  module_name: license
+  name: license/backward_compatibility.sh
+  script: backward_compatibility.sh
+labels: []
+modules:
+  install: []
+  repositories: []
+name: license
+osbs:
+  configuration: {}
+  repository: {}
+packages:
+  install: []
+  repositories: []
+ports: []
+schema_version: 1
+version: 1.0
+volumes: []

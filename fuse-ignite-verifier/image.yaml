@@ -1,0 +1,42 @@
+schema_version: 1
+
+name: "jboss-fuse-7-tech-preview/fuse-ignite-verifier"
+description: "Verifier Service for Fuse Ignite"
+version: "1.2"
+from: "registry-proxy.engineering.redhat.com/rh-osbs/jboss-fuse-7-tech-preview-fuse-java-openshift:1.0-3"
+
+labels:
+- name: "release"
+  value: "3"
+- name: "architecture"
+  value: "x86_64"
+- name: "com.redhat.component"
+  value: "fuse-ignite-verifier"
+- name: "maintainer"
+  value: "Jimmi Dyson <jimmidyson@gmail.com>"   
+- name: "io.k8s.description"
+  value: "Verifier Service for Fuse Ignite"
+- name: "io.k8s.display-name"
+  value: "JBoss Fuse Ignite - Verifier Service"
+- name: "io.openshift.tags"
+  value: "fuse"
+
+envs:
+- name: JAVA_APP_DIR
+  value: /deployments
+
+ports:
+    - value: 8080
+    - value: 8778
+    - value: 9779
+      expose: true   
+
+artifacts:
+- name: syndesis-verifier
+- md5: 37418e84e1f09ff59518470ca9f0ebd9
+- url: http://indy.psi.redhat.com/api/content/maven/group/redhat-builds
+- target: runtime.jar
+- dest: /deployments/
+
+run:
+  user: 185

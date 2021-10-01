@@ -1,0 +1,23 @@
+schema_version: 1
+
+name: environ
+version: 1.0
+description: "To set envs of builder img"
+
+envs:
+- name: SYNDESIS_REV
+  value: 1.12.0
+- name: SYNDESIS_TAG
+  value: syndesis-1.12.0.fuse-790011
+- name: GOPATH
+  value: /go
+- name: GOFLAGS
+  value: ""
+- name: GO111MODULE
+  value: "on"
+- name: GOOS
+  value: linux
+- name: GOARCH
+  value: amd64
+- name: UPGRADE_VERSION
+  value: "1.9"

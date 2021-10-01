@@ -1,0 +1,11 @@
+operator_manifests:
+  manifests_dir: manifests
+  enable_digest_pinning: true
+  enable_repo_replacements: true
+  enable_registry_replacements: true
+  repo_replacements:
+    - registry: registry.redhat.io
+      package_mappings:
+        fuse-apicurito-rhel-8-operator-container: fuse7
+        fuse-apicurito-openshift-rhel-8-container: fuse7
+        fuse-apicurito-generator-openshift-rhel-8-container: fuse7

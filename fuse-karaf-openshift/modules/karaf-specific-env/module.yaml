@@ -1,0 +1,13 @@
+schema_version: 1
+
+name: karaf-specific-env
+version: 1.0
+description: "To set envs"
+
+envs:
+- name: PATH
+  value: "/opt/rh/rh-maven35/root/usr/bin:${PATH:-/bin:/usr/bin}"
+- name: MANPATH
+  value: "/opt/rh/rh-maven35/root/usr/share/man:${MANPATH}"
+- name: PYTHONPATH
+  value: "/opt/rh/rh-maven35/root/usr/lib/python2.7/site-packages${PYTHONPATH:+:}${PYTHONPATH:-}"    
